@@ -1,0 +1,15 @@
+result/*
+data/*
+runs/*
+exp_results.txt
+test.txt
+
+tags
+.idea
+*.pyc
+*__pycache__*
+.vscode
+.*.swp
+.*.swo
+
+checkpoints/*
