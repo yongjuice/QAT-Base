@@ -27,11 +27,10 @@ class QuantizedConv2d(nn.Conv2d):
         self.out_channels = out_channels
         self.multiplication = multiplication
 
-        t_init = list(range(0))
-        self.s1 = nn.Parameter(torch.tensor(t_init, dtype=torch.float32), requires_grad=False)
-        self.s3 = nn.Parameter(torch.tensor(t_init, dtype=torch.float32), requires_grad=False)
-        self.z1 = nn.Parameter(torch.tensor(t_init, dtype=torch.int32), requires_grad=False)
-        self.z3 = nn.Parameter(torch.tensor(t_init, dtype=torch.int32), requires_grad=False)
+        self.s1 = nn.Parameter(torch.tensor(0, dtype=torch.float32), requires_grad=False)
+        self.s3 = nn.Parameter(torch.tensor(0, dtype=torch.float32), requires_grad=False)
+        self.z1 = nn.Parameter(torch.tensor(0, dtype=torch.int32), requires_grad=False)
+        self.z3 = nn.Parameter(torch.tensor(0,  dtype=torch.int32), requires_grad=False)
 
         self.is_shift_neg = nn.Parameter(torch.tensor(False, dtype=torch.bool), requires_grad=False)
         if self.per_channel:
@@ -44,8 +43,8 @@ class QuantizedConv2d(nn.Conv2d):
         else:
             self.s2 = nn.Parameter(torch.tensor(0, dtype=torch.float32), requires_grad=False)
             self.z2 = nn.Parameter(torch.tensor(0, dtype=torch.int32), requires_grad=False)
-            self.M0 = nn.Parameter(torch.tensor(t_init, dtype=torch.int32), requires_grad=False)
-            self.shift = nn.Parameter(torch.tensor(t_init, dtype=torch.int32), requires_grad=False)
+            self.M0 = nn.Parameter(torch.tensor(0, dtype=torch.int32), requires_grad=False)
+            self.shift = nn.Parameter(torch.tensor(0, dtype=torch.int32), requires_grad=False)
 
     def forward(self, x):
         x, out = self._conv_impl(x)

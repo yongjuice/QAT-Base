@@ -120,7 +120,6 @@ def _finetune(args, tools, data_loaders):
         json.dump(tmp, f, indent=4)
 
     tuning_time_cost = get_time_cost_in_string(time() - tuning_start_time)
-    method = args.quant_base
 
     pc = ''
     if args.per_channel:
@@ -129,7 +128,7 @@ def _finetune(args, tools, data_loaders):
         pc += 'Symmetric, '
 
     with open(f'./qat_{args.arch}_{args.dataset}_{args.bit}_F{args.bit_first}L{args.bit_classifier}_{args.gpu}.txt', 'a') as f:
-        f.write('{:.2f} # {}, {}, {}, LR: {}, W-decay: {}, Epoch: {}, Batch: {}, {}Bit(First/Last/AddCat): {}({}/{}/{}), Smooth: {}, Best-epoch: {}, Time: {}, GPU: {}, Path: {}\n'
-                .format(test_score, args.arch, args.dataset, method, args.lr, args.weight_decay, args.epoch, args.batch,
+        f.write('{:.2f} # {}, {}, LR: {}, W-decay: {}, Epoch: {}, Batch: {}, {}Bit(First/Last/AddCat): {}({}/{}/{}), Smooth: {}, Best-epoch: {}, Time: {}, GPU: {}, Path: {}\n'
+                .format(test_score, args.arch, args.dataset, args.lr, args.weight_decay, args.epoch, args.batch,
                         pc, args.bit, args.bit_first, args.bit_classifier, args.bit_addcat, args.smooth, best_epoch,
                         tuning_time_cost, args.gpu, save_path_fp))

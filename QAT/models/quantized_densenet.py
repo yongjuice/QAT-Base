@@ -119,7 +119,7 @@ class QuantizedDenseNet(nn.Module):
         self.bit, self.runtime_helper = itemgetter('bit', 'runtime_helper')(arg_dict)
         self.q_max = 2 ** self.bit - 1
 
-        t_init = list(range(0))
+        t_init = 0
         self.scale = nn.Parameter(torch.tensor(t_init, dtype=torch.float32), requires_grad=False)
         self.zero_point = nn.Parameter(torch.tensor(t_init, dtype=torch.int32), requires_grad=False)
 

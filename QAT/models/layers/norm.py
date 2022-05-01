@@ -15,7 +15,7 @@ class QuantizedBn2d(nn.Module):
         self.w_bit = nn.Parameter(torch.tensor(0, dtype=torch.int8), requires_grad=False)
         self.a_bit = nn.Parameter(torch.tensor(0, dtype=torch.int8), requires_grad=False)
 
-        t_init = list(range(0))
+        t_init = 0
         self.s1 = nn.Parameter(torch.tensor(t_init, dtype=torch.float32), requires_grad=False)
         self.s2 = nn.Parameter(torch.tensor(0, dtype=torch.float32), requires_grad=False)
         self.s3 = nn.Parameter(torch.tensor(t_init, dtype=torch.float32), requires_grad=False)

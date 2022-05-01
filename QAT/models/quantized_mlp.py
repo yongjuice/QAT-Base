@@ -14,7 +14,7 @@ class QuantizedMLP(nn.Module):
         self.target_bit = nn.Parameter(torch.tensor(bit, dtype=torch.int8), requires_grad=False)
         self.in_bit = nn.Parameter(torch.tensor(bit, dtype=torch.int8), requires_grad=False)
 
-        t_init = list(range(0))
+        t_init = 0
         self.scale = nn.Parameter(torch.tensor(t_init, dtype=torch.float32), requires_grad=False)
         self.zero_point = nn.Parameter(torch.tensor(t_init, dtype=torch.int32), requires_grad=False)
 

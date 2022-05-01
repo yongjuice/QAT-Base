@@ -11,7 +11,7 @@ class QuantizedAdd(nn.Module):
         self.runtime_helper = itemgetter('runtime_helper')(arg_dict)
         self.a_bit = nn.Parameter(torch.tensor(0, dtype=torch.int8), requires_grad=False)
 
-        t_init = list(range(0))
+        t_init = 0
         self.z_bypass = nn.Parameter(torch.tensor(t_init, dtype=torch.int32), requires_grad=False)
         self.z_prev = nn.Parameter(torch.tensor(t_init, dtype=torch.int32), requires_grad=False)
         self.M0_bypass = nn.Parameter(torch.tensor(t_init, dtype=torch.int32), requires_grad=False)
@@ -51,7 +51,7 @@ class QuantizedMul(nn.Module):
         self.layer_type = 'QuantizedMul'
         self.a_bit, self.runtime_helper = itemgetter('bit', 'runtime_helper')(arg_dict)
 
-        t_init = list(range(0))
+        t_init = 0
         self.s_prev = nn.Parameter(torch.tensor(t_init, dtype=torch.float32), requires_grad=False)
         self.z_prev = nn.Parameter(torch.tensor(t_init, dtype=torch.int32), requires_grad=False)
         self.s_bypass = nn.Parameter(torch.tensor(t_init, dtype=torch.float32), requires_grad=False)
